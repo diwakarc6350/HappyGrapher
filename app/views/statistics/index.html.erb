@@ -28,3 +28,10 @@
   {name: "High Temprature by Month", data: temp_by_month_high},
   {name: "Low Temprature by Month", data: temp_by_month_low}] ,
   {library: {hAxis: {title: "X"}, vAxis: {title: "Blah"}}})%>
+
+<h3>Countries by number of atletes<h3>
+<% athelets_by_country = Sporter.sporter_by_country%>
+<%= column_chart athelets_by_country%>
+
+<h3>Participating countries<h3>
+<%= geo_chart athelets_by_country%>
