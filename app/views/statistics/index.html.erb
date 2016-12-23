@@ -1,19 +1,30 @@
 
-<h1>Statistics Fun with ChartKick<h1>
+<h1>Statistics Fun with Chartkick<h1>
+
 <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+
+<h3>Popular Sports in the Unites States<h3>
 <%= pie_chart({
-  "American football" => 38.8,
-  'Baseball' => 15.3,
-  "Basketball" => 14.8,
-  "Scoccer"=>8.2,
-  "Cricket"=> 1}) %>
+      "American football" => 38.8,
+      'Baseball' => 15.3,
+      "Basketball" => 14.8,
+      "Scoccer"=>8.2,
+      "Do not play any sports" => 21.9,
+      "Cricket"=> 1})
+%>
 
-<% series_a = {"10" => -5, "11" => 9,"12" => 3,"13" => -1,"14" => 4,"15" => -2,"16" => -4} %>
+<h3>Participating Age Group in Sports<h3>
+<%  age_group =  Sporter.group(:age).count %>
+<%= bar_chart(age_group)%>
 
-<%= line_chart [{name: "Series A", data: series_a}] %>
-
-<%= line_chart({20.day.ago => 5, 100.days.ago => 4, "2013-05-07 00:00:00 UTC" => 7}) %>
-
-<div id="chart-1" style="height: 300px"></div>
-
-<%= bar_chart([['boys',100],['girls',200]])%>
+<h3>Columbus High/Low Temprature by Month<h3>
+<% temp_by_month_high = {
+  "1" => 36, "2" => 40, "3" => 53, "4" => 63,"5"=> 73, "6"=>82,
+  "7" => 85,  "8" => 84, "9" => 77, "10" => 65, "11" => 52, "12" => 41} %>
+<% temp_by_month_low = {
+    "1" => 20, "2" => 24, "3" => 32, "4" => 41,"5"=> 52, "6"=>61,
+    "7" => 65,  "8" => 63, "9" => 56, "10" => 44, "11" => 35, "12" => 26} %>
+<%= area_chart([
+  {name: "High Temprature by Month", data: temp_by_month_high},
+  {name: "Low Temprature by Month", data: temp_by_month_low}] ,
+  {library: {hAxis: {title: "X"}, vAxis: {title: "Blah"}}})%>
